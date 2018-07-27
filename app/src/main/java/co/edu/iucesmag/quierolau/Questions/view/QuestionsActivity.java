@@ -18,10 +18,12 @@ import com.google.gson.reflect.TypeToken;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.List;
 
 import co.edu.iucesmag.quierolau.HomeGame.view.HomeActivity;
 import co.edu.iucesmag.quierolau.Questions.model.Question;
+import co.edu.iucesmag.quierolau.Questions.model.ResultQuestion;
 import co.edu.iucesmag.quierolau.R;
 
 public class QuestionsActivity extends AppCompatActivity {
@@ -36,6 +38,8 @@ public class QuestionsActivity extends AppCompatActivity {
     List<Question> questionList;
     Integer sizeListQuestion = 0;
     Integer positionListQuestion = 0;
+    List<ResultQuestion> resultQuestionList = new ArrayList<>();
+    String respuesta;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +59,14 @@ public class QuestionsActivity extends AppCompatActivity {
         buttonNextQuestion = (Button) findViewById(R.id.button_next_question);
 
         positionListQuestion = sharedPreferences.getInt("positionQuestion", 0);
+
+        if( (sharedPreferences.getString("respuestasPersona", null)) != null ){
+            Gson gson = new Gson();
+            resultQuestionList = gson.fromJson(
+                    sharedPreferences.getString("respuestasPersona", null),
+                    new TypeToken<List<ResultQuestion>>(){}.getType()
+            );
+        }
 
         processQuestions();
     }
@@ -89,22 +101,28 @@ public class QuestionsActivity extends AppCompatActivity {
             System.out.println(item);
         }*/
 
-
-
-
-
         if (radioGroupIndex.getCheckedRadioButtonId() == -1){
             Toast.makeText(this, "Para continuar seleccione una opción", Toast.LENGTH_SHORT).show();
         }else {
-            if(positionListQuestion < (sizeListQuestion-1)){
-                positionListQuestion = positionListQuestion + 1;
-                editor.putInt("positionQuestion", positionListQuestion);
-                editor.commit();
+            Gson gson = new Gson();
+
+            String tmpRes = questionList.get(positionListQuestion).getRes();
+            ResultQuestion resultQuestion = new ResultQuestion();
+            resultQuestion.setNropreg(questionList.get(positionListQuestion).getId());
+            resultQuestion.setRespreg(respuesta);
+            resultQuestion.setCorrecto((tmpRes.equals(respuesta))?true:false);
+            resultQuestionList.add(resultQuestion);
+
+            String listJson = gson.toJson(resultQuestionList);
+            editor.putString("respuestasPersona", listJson);
+
+            positionListQuestion = positionListQuestion + 1;
+            editor.putInt("positionQuestion", positionListQuestion);
+            editor.commit();
+
+            if (positionListQuestion < sizeListQuestion){
                 showQuestion(positionListQuestion);
             }else {
-                positionListQuestion = 0;
-                editor.putInt("positionQuestion", 0);
-                editor.commit();
                 Intent intent = new Intent(this, HomeActivity.class);
                 startActivity(intent);
             }
@@ -117,19 +135,19 @@ public class QuestionsActivity extends AppCompatActivity {
         switch(view.getId()) {
             case R.id.radio_a:
                 if (checked)
-                    Toast.makeText(this, "OPCION 1", Toast.LENGTH_SHORT).show();
+                    respuesta = "a";
                 break;
             case R.id.radio_b:
                 if (checked)
-                    Toast.makeText(this, "OPCION 2", Toast.LENGTH_SHORT).show();
+                    respuesta = "b";
                 break;
             case R.id.radio_c:
                 if (checked)
-                    Toast.makeText(this, "OPCION 3", Toast.LENGTH_SHORT).show();
+                    respuesta = "c";
                 break;
             case R.id.radio_d:
                 if (checked)
-                    Toast.makeText(this, "OPCION 4", Toast.LENGTH_SHORT).show();
+                    respuesta = "d";
                 break;
         }
     }
