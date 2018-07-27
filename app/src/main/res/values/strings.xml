@@ -10,5 +10,5 @@
     <string name="str_alert_button_ok">OK</string>
     <string name="str_alert_button_cancel">Cancelar</string>
 
-    <string name="str_progreesbar_title">Verificando usuario ...</string>
+    <string name="str_progreesbar_title">Procesando usuario ...</string>
 </resources>

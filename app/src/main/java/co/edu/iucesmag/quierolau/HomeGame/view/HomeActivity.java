@@ -1,11 +1,14 @@
 package co.edu.iucesmag.quierolau.HomeGame.view;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
 
@@ -21,6 +24,8 @@ public class HomeActivity extends AppCompatActivity {
 
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
+
+    Dialog dialogProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +48,9 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void onStartGame(){
+        dialogProgressBar = showProgressBarDialog();
+        dialogProgressBar.show();
+
         Date today = Calendar.getInstance().getTime();
         SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String dateTimeToday = formatDate.format(today);
@@ -54,5 +62,13 @@ public class HomeActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this, QuestionsActivity.class);
         startActivity(intent);
+    }
+
+    public Dialog showProgressBarDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = getLayoutInflater();
+        builder.setView(inflater.inflate(R.layout.dialog_progress_bar, null));
+        builder.setCancelable(false);
+        return builder.create();
     }
 }

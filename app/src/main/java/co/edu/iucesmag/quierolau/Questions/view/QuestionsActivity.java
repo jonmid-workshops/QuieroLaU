@@ -29,6 +29,7 @@ import java.util.List;
 
 import co.edu.iucesmag.quierolau.HomeGame.view.HomeActivity;
 import co.edu.iucesmag.quierolau.Questions.model.Question;
+import co.edu.iucesmag.quierolau.Questions.model.ResponseQuestion;
 import co.edu.iucesmag.quierolau.Questions.model.ResultQuestion;
 import co.edu.iucesmag.quierolau.Questions.presenter.QuestionsActivityPresenter;
 import co.edu.iucesmag.quierolau.Questions.presenter.QuestionsActivityPresenterInter;
@@ -148,8 +149,7 @@ public class QuestionsActivity extends AppCompatActivity implements QuestionsAct
                 String tmpId = String.valueOf(sharedPreferences.getInt("id", 0));
 
                 questionsActivityPresenterInter.saveQuestions(tmpId, tmpFecIni, tmpFecFin, tmpData);
-                //Intent intent = new Intent(this, HomeActivity.class);
-                //startActivity(intent);
+
             }
         }
     }
@@ -183,5 +183,11 @@ public class QuestionsActivity extends AppCompatActivity implements QuestionsAct
         builder.setView(inflater.inflate(R.layout.dialog_progress_bar, null));
         builder.setCancelable(false);
         return builder.create();
+    }
+
+    @Override
+    public void saveQuestionsResult(ResponseQuestion responseQuestion) {
+        Intent intent = new Intent(this, HomeActivity.class);
+        startActivity(intent);
     }
 }

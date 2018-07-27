@@ -2,6 +2,7 @@ package co.edu.iucesmag.quierolau.Questions.presenter;
 
 import co.edu.iucesmag.quierolau.Questions.interactor.QuestionsActivityInteractor;
 import co.edu.iucesmag.quierolau.Questions.interactor.QuestionsActivityInteractorInter;
+import co.edu.iucesmag.quierolau.Questions.model.ResponseQuestion;
 import co.edu.iucesmag.quierolau.Questions.view.QuestionsActivityView;
 
 public class QuestionsActivityPresenter implements QuestionsActivityPresenterInter {
@@ -17,5 +18,10 @@ public class QuestionsActivityPresenter implements QuestionsActivityPresenterInt
     @Override
     public void saveQuestions(String ident, String fecini, String fecfin, String listdata) {
         questionsActivityInteractorInter.saveQuestions(ident, fecini, fecfin, listdata);
+    }
+
+    @Override
+    public void saveQuestionsResult(ResponseQuestion responseQuestion) {
+        questionsActivityView.saveQuestionsResult(responseQuestion);
     }
 }

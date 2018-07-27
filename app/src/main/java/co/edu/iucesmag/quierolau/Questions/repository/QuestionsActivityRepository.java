@@ -24,15 +24,15 @@ public class QuestionsActivityRepository implements QuestionsActivityRepositoryI
     @Override
     public void saveQuestions(String ident, String fecini, String fecfin, String listdata) {
         RestApiAdapter restApiAdapter = new RestApiAdapter();
-        Service service = restApiAdapter.getClientService();
+        Service service = restApiAdapter.getClientServicePrueba();
         service.onSaveQuestion(ident, fecini, fecfin, listdata).enqueue(new Callback<ResponseQuestion>() {
             @Override
             public void onResponse(Call<ResponseQuestion> call, Response<ResponseQuestion> response) {
                 responseQuestion = response.body();
-                //loginActivityInteractorInter.signInResut(loginList);
+                questionsActivityInteractorInter.saveQuestionsResult(responseQuestion);
 
-                String json = new Gson().toJson(responseQuestion);
-                Log.d("LoginPost", json);
+                //String json = new Gson().toJson(responseQuestion);
+                //Log.d("LoginPost", json);
             }
 
             @Override
