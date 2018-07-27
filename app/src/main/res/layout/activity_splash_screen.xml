@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/qlu_bg_sc"
+    tools:context=".SplashScreen.view.SplashScreenActivity">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerInside"
+        android:src="@drawable/qlu_logo_sc"
+        android:layout_weight="1"
+        android:layout_margin="50dp"/>
+
+    <ProgressBar
+        android:id="@+id/id_pgb_sc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="24dp"/>
+
+    <TextView
+        android:id="@+id/id_txv_sc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sin conexión a internet"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:visibility="gone"
+        android:padding="24dp"/>
+
+</LinearLayout>

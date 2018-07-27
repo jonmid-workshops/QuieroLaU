@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "opt_a": "Hermanos Menores Capuchinos",
+    "opt_b": "Padre Guillermo de Castellana",
+    "opt_c": "San Francisco de Asís",
+    "opt_d": "Santa María Goretti",
+    "title": "¿Quién fundó la Institución Universitaria CESMAG?",
+    "res":	 "b"
+  },
+  {
+    "id": 2,
+    "opt_a": "Público",
+    "opt_b": "Semiprivado",
+    "opt_c": "Privado",
+    "opt_d": "Gratuito",
+    "title": "¿Cuál es el carácter de la Institución?",
+    "res":	 "c"
+  },
+  {
+    "id": 3,
+    "opt_a": "1912",
+    "opt_b": "1982",
+    "opt_c": "1973",
+    "opt_d": "1952",
+    "title": "¿En qué año inició clases la Institución?",
+    "res":	 "b"
+  }
+]

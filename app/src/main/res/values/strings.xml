@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">QuieroLaU</string>
+    <string name="str_login_username">Identificación</string>
+    <string name="str_login_password">Código estudiantil</string>
+    <string name="str_btn_login">Ingresar</string>
+
+    <string name="str_alert_title_error">Error</string>
+    <string name="str_alert_message_error">La identificación y el código no pueden estar vacíos.</string>
+    <string name="str_alert_button_ok">OK</string>
+    <string name="str_alert_button_cancel">Cancelar</string>
+
+    <string name="str_progreesbar_title">Verificando usuario ...</string>
+</resources>
