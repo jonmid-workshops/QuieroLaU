@@ -1,11 +1,14 @@
 package co.edu.iucesmag.quierolau.Questions.view;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -18,15 +21,20 @@ import com.google.gson.reflect.TypeToken;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import co.edu.iucesmag.quierolau.HomeGame.view.HomeActivity;
 import co.edu.iucesmag.quierolau.Questions.model.Question;
 import co.edu.iucesmag.quierolau.Questions.model.ResultQuestion;
+import co.edu.iucesmag.quierolau.Questions.presenter.QuestionsActivityPresenter;
+import co.edu.iucesmag.quierolau.Questions.presenter.QuestionsActivityPresenterInter;
 import co.edu.iucesmag.quierolau.R;
 
-public class QuestionsActivity extends AppCompatActivity {
+public class QuestionsActivity extends AppCompatActivity implements QuestionsActivityView {
 
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
@@ -40,6 +48,10 @@ public class QuestionsActivity extends AppCompatActivity {
     Integer positionListQuestion = 0;
     List<ResultQuestion> resultQuestionList = new ArrayList<>();
     String respuesta;
+
+    Dialog dialogProgressBar;
+
+    private QuestionsActivityPresenterInter questionsActivityPresenterInter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +69,8 @@ public class QuestionsActivity extends AppCompatActivity {
         radioButtonC = (RadioButton) findViewById(R.id.radio_c);
         radioButtonD = (RadioButton) findViewById(R.id.radio_d);
         buttonNextQuestion = (Button) findViewById(R.id.button_next_question);
+
+        questionsActivityPresenterInter = new QuestionsActivityPresenter(this);
 
         positionListQuestion = sharedPreferences.getInt("positionQuestion", 0);
 
@@ -123,8 +137,19 @@ public class QuestionsActivity extends AppCompatActivity {
             if (positionListQuestion < sizeListQuestion){
                 showQuestion(positionListQuestion);
             }else {
-                Intent intent = new Intent(this, HomeActivity.class);
-                startActivity(intent);
+                dialogProgressBar = showProgressBarDialog();
+                dialogProgressBar.show();
+
+                Date today = Calendar.getInstance().getTime();
+                SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                String tmpFecFin = formatDate.format(today);
+                String tmpFecIni = sharedPreferences.getString("fecIni", null);
+                String tmpData = sharedPreferences.getString("respuestasPersona", null);
+                String tmpId = String.valueOf(sharedPreferences.getInt("id", 0));
+
+                questionsActivityPresenterInter.saveQuestions(tmpId, tmpFecIni, tmpFecFin, tmpData);
+                //Intent intent = new Intent(this, HomeActivity.class);
+                //startActivity(intent);
             }
         }
     }
@@ -150,5 +175,13 @@ public class QuestionsActivity extends AppCompatActivity {
                     respuesta = "d";
                 break;
         }
+    }
+
+    public Dialog showProgressBarDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = getLayoutInflater();
+        builder.setView(inflater.inflate(R.layout.dialog_progress_bar, null));
+        builder.setCancelable(false);
+        return builder.create();
     }
 }
