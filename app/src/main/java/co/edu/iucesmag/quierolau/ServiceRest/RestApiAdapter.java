@@ -13,12 +13,4 @@ public class RestApiAdapter {
         return retrofit.create(Service.class);
     }
 
-    public Service getClientServicePrueba(){
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Constants.ROOT_URL_PRUEBA)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        return retrofit.create(Service.class);
-    }
-
 }
