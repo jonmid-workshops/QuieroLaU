@@ -65,7 +65,7 @@ public class LoginActivity extends AppCompatActivity implements LoginActivityVie
             editor.putString("name", login.getName());
             editor.commit();
 
-            dialogProgressBar.cancel();
+            //dialogProgressBar.cancel();
 
             Intent intent = new Intent(this, HomeActivity.class);
             startActivity(intent);

@@ -6,4 +6,5 @@
 
     <color name="colorBorderEditText">#F6F9FD</color>
     <color name="colorBackgroundEditText">#ABBFC2</color>
+    <color name="colorBorderQuestion">#30C0D8</color>
 </resources>

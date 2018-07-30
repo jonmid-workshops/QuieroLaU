@@ -103,9 +103,9 @@ public class QuestionsActivity extends AppCompatActivity implements QuestionsAct
         radioButtonD.setText(questionList.get(position).getOpt_d());
 
         if(position == (sizeListQuestion-1)){
-            buttonNextQuestion.setText("Terminar preguntas");
+            //buttonNextQuestion.setText("Terminar preguntas");
         }else{
-            buttonNextQuestion.setText("Siguiente pregunta");
+            //buttonNextQuestion.setText("Siguiente pregunta");
         }
 
         textViewCountQuestion.setText("Pregunta: "+(position+1)+" / "+sizeListQuestion);

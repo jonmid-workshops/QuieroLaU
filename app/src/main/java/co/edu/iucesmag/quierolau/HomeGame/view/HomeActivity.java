@@ -23,8 +23,6 @@ import co.edu.iucesmag.quierolau.R;
 public class HomeActivity extends AppCompatActivity {
 
     SharedPreferences sharedPreferences;
-    SharedPreferences.Editor editor;
-
     Dialog dialogProgressBar;
 
     @Override
@@ -32,8 +30,12 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        //initializeVariables();
+    }
+
+    public void initializeVariables(){
         sharedPreferences = getSharedPreferences("PreferencesQuieroLaU", Context.MODE_PRIVATE);
-        editor = sharedPreferences.edit();
+        SharedPreferences.Editor editor = sharedPreferences.edit();
 
         editor.putBoolean("startGame", false);
         editor.putInt("positionQuestion", 0);
@@ -55,6 +57,8 @@ public class HomeActivity extends AppCompatActivity {
         SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String dateTimeToday = formatDate.format(today);
 
+        sharedPreferences = getSharedPreferences("PreferencesQuieroLaU", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean("startGame", true);
         editor.putInt("positionQuestion", 0);
         editor.putString("fecIni", dateTimeToday);

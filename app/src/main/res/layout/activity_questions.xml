@@ -17,64 +17,69 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:paddingTop="24dp"
-            android:paddingLeft="12dp"
-            android:paddingRight="12dp"
-            android:layout_weight="1">
+            android:padding="16dp"
+            android:layout_margin="16dp"
+            android:layout_weight="1"
+            android:background="@drawable/qlu_border_question">
 
             <TextView
                 android:id="@+id/textview_question"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textStyle="bold"
                 android:textAlignment="center"
                 android:text="¿Sueles pensar a menudo sobre lo que te ocurre y lo que sientes?" />
 
-            <RadioGroup
-                android:id="@+id/radiogroup_index"
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginTop="18dp">
-                <RadioButton android:id="@+id/radio_a"
+                android:layout_height="match_parent">
+                <RadioGroup
+                    android:id="@+id/radiogroup_index"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:layout_marginBottom="6dp"
-                    android:text="aaaaa aaaaa"
-                    android:onClick="onRadioButtonClicked"/>
-                <RadioButton android:id="@+id/radio_b"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:layout_marginBottom="6dp"
-                    android:text="bbbbb bbbbb"
-                    android:onClick="onRadioButtonClicked"/>
-                <RadioButton android:id="@+id/radio_c"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:layout_marginBottom="6dp"
-                    android:text="ccccc ccccc"
-                    android:onClick="onRadioButtonClicked"/>
-                <RadioButton android:id="@+id/radio_d"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:layout_marginBottom="6dp"
-                    android:text="ddddd ddddd"
-                    android:onClick="onRadioButtonClicked"/>
-            </RadioGroup>
+                    android:orientation="vertical"
+                    android:layout_marginTop="18dp">
+                    <RadioButton android:id="@+id/radio_a"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:layout_marginBottom="6dp"
+                        android:text="aaaaa aaaaa"
+                        android:onClick="onRadioButtonClicked"/>
+                    <RadioButton android:id="@+id/radio_b"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:layout_marginBottom="6dp"
+                        android:text="bbbbb bbbbb"
+                        android:onClick="onRadioButtonClicked"/>
+                    <RadioButton android:id="@+id/radio_c"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:layout_marginBottom="6dp"
+                        android:text="ccccc ccccc"
+                        android:onClick="onRadioButtonClicked"/>
+                    <RadioButton android:id="@+id/radio_d"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:layout_marginBottom="6dp"
+                        android:text="ddddd ddddd"
+                        android:onClick="onRadioButtonClicked"/>
+                </RadioGroup>
+            </ScrollView>
 
         </LinearLayout>
 
         <Button
             android:id="@+id/button_next_question"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Siguiente pregunta"
-            android:layout_marginLeft="12dp"
-            android:layout_marginRight="12dp"
-            android:onClick="onButtonClickedNextQuestion"/>
+            android:layout_width="182dp"
+            android:layout_height="59dp"
+            android:layout_gravity="center"
+            android:background="@drawable/qlu_background_button_next"
+            android:onClick="onButtonClickedNextQuestion"
+            android:layout_marginTop="8dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -82,12 +87,21 @@
             android:orientation="vertical"
             android:paddingTop="18dp"
             android:paddingBottom="18dp">
-            <TextView
-                android:id="@+id/textview_count_question"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:text="Pregunta: 1 / 50" />
+
+            <RelativeLayout
+                android:layout_width="298dp"
+                android:layout_height="42dp"
+                android:background="@drawable/background_count_question"
+                android:layout_gravity="center">
+                <TextView
+                    android:id="@+id/textview_count_question"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Pregunta: 1 / 50"
+                    android:textStyle="bold"
+                    android:textAlignment="center"
+                    android:layout_centerInParent="true"/>
+            </RelativeLayout>
         </LinearLayout>
     </LinearLayout>
 
