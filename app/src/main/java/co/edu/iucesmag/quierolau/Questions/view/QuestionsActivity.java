@@ -135,6 +135,12 @@ public class QuestionsActivity extends AppCompatActivity implements QuestionsAct
             editor.putInt("positionQuestion", positionListQuestion);
             editor.commit();
 
+            if ((tmpRes.equals(respuesta))?true:false){
+                Toast.makeText(this, "Respuesta correcta", Toast.LENGTH_SHORT).show();
+            }else {
+                Toast.makeText(this, "Respuesta incorrecta", Toast.LENGTH_SHORT).show();
+            }
+
             if (positionListQuestion < sizeListQuestion){
                 showQuestion(positionListQuestion);
             }else {
