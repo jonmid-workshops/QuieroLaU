@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/qlu_bg_sc"
+    android:background="@drawable/qlu_background_splashs"
     tools:context=".SplashScreen.view.SplashScreenActivity">
 
     <ImageView
