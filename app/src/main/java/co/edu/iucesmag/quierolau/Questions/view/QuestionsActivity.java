@@ -4,6 +4,8 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -144,17 +146,24 @@ public class QuestionsActivity extends AppCompatActivity implements QuestionsAct
             if (positionListQuestion < sizeListQuestion){
                 showQuestion(positionListQuestion);
             }else {
-                dialogProgressBar = showProgressBarDialog();
-                dialogProgressBar.show();
 
-                Date today = Calendar.getInstance().getTime();
-                SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                String tmpFecFin = formatDate.format(today);
-                String tmpFecIni = sharedPreferences.getString("fecIni", null);
-                String tmpData = sharedPreferences.getString("respuestasPersona", null);
-                String tmpId = String.valueOf(sharedPreferences.getInt("id", 0));
+                //ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+                //NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+                //if (networkInfo != null){
+                    dialogProgressBar = showProgressBarDialog();
+                    dialogProgressBar.show();
 
-                questionsActivityPresenterInter.saveQuestions(tmpId, tmpFecIni, tmpFecFin, tmpData);
+                    Date today = Calendar.getInstance().getTime();
+                    SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    String tmpFecFin = formatDate.format(today);
+                    String tmpFecIni = sharedPreferences.getString("fecIni", null);
+                    String tmpData = sharedPreferences.getString("respuestasPersona", null);
+                    String tmpId = String.valueOf(sharedPreferences.getInt("id", 0));
+
+                    questionsActivityPresenterInter.saveQuestions(tmpId, tmpFecIni, tmpFecFin, tmpData);
+                //}else {
+                    //Toast.makeText(this, "Verifica tu conexión a internet.  Debes estar conectado para poder guardar el intento.", Toast.LENGTH_SHORT).show();
+                //}
 
             }
         }
