@@ -146,25 +146,17 @@ public class QuestionsActivity extends AppCompatActivity implements QuestionsAct
             if (positionListQuestion < sizeListQuestion){
                 showQuestion(positionListQuestion);
             }else {
+                dialogProgressBar = showProgressBarDialog();
+                dialogProgressBar.show();
 
-                //ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-                //NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
-                //if (networkInfo != null){
-                    dialogProgressBar = showProgressBarDialog();
-                    dialogProgressBar.show();
+                Date today = Calendar.getInstance().getTime();
+                SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                String tmpFecFin = formatDate.format(today);
+                String tmpFecIni = sharedPreferences.getString("fecIni", null);
+                String tmpData = sharedPreferences.getString("respuestasPersona", null);
+                String tmpId = String.valueOf(sharedPreferences.getInt("id", 0));
 
-                    Date today = Calendar.getInstance().getTime();
-                    SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                    String tmpFecFin = formatDate.format(today);
-                    String tmpFecIni = sharedPreferences.getString("fecIni", null);
-                    String tmpData = sharedPreferences.getString("respuestasPersona", null);
-                    String tmpId = String.valueOf(sharedPreferences.getInt("id", 0));
-
-                    questionsActivityPresenterInter.saveQuestions(tmpId, tmpFecIni, tmpFecFin, tmpData);
-                //}else {
-                    //Toast.makeText(this, "Verifica tu conexión a internet.  Debes estar conectado para poder guardar el intento.", Toast.LENGTH_SHORT).show();
-                //}
-
+                questionsActivityPresenterInter.saveQuestions(tmpId, tmpFecIni, tmpFecFin, tmpData);
             }
         }
     }

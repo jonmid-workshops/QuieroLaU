@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.sql.Time;
@@ -27,11 +28,14 @@ public class HomeActivity extends AppCompatActivity {
 
     SharedPreferences sharedPreferences;
     Dialog dialogProgressBar;
+    TextView textViewNameStudent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        textViewNameStudent = (TextView) findViewById(R.id.textview_name_student);
 
         initializeVariables();
     }
@@ -39,6 +43,8 @@ public class HomeActivity extends AppCompatActivity {
     public void initializeVariables(){
         sharedPreferences = getSharedPreferences("PreferencesQuieroLaU", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        textViewNameStudent.setText(sharedPreferences.getString("name", null));
 
         editor.putBoolean("startGame", false);
         editor.putInt("positionQuestion", 0);
