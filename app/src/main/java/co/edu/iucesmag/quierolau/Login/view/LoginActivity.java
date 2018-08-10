@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,6 +18,7 @@ import co.edu.iucesmag.quierolau.Login.model.Login;
 import co.edu.iucesmag.quierolau.Login.presenter.LoginActivityPresenter;
 import co.edu.iucesmag.quierolau.Login.presenter.LoginActivityPresenterInter;
 import co.edu.iucesmag.quierolau.R;
+import co.edu.iucesmag.quierolau.Admin.view.ReportActivity;
 
 public class LoginActivity extends AppCompatActivity implements LoginActivityView {
 
@@ -73,6 +73,20 @@ public class LoginActivity extends AppCompatActivity implements LoginActivityVie
             dialogProgressBar.cancel();
             Toast.makeText(this, "Identificación y/o código son incorrectos", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    @Override
+    public void signInResutAdmin() {
+        sharedPreferences = getSharedPreferences("PreferencesQuieroLaU", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("statusLogin", true);
+        editor.putBoolean("statusAdmin", true);
+        editor.putInt("id", 0);
+        editor.putString("name", "Administrador");
+        editor.commit();
+
+        Intent intent = new Intent(this, ReportActivity.class);
+        startActivity(intent);
     }
 
     public Dialog showAlertDialog() {

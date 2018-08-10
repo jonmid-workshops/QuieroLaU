@@ -14,6 +14,7 @@ import co.edu.iucesmag.quierolau.HomeGame.view.HomeActivity;
 import co.edu.iucesmag.quierolau.Login.view.LoginActivity;
 import co.edu.iucesmag.quierolau.Questions.view.QuestionsActivity;
 import co.edu.iucesmag.quierolau.R;
+import co.edu.iucesmag.quierolau.Admin.view.ReportActivity;
 import co.edu.iucesmag.quierolau.SplashScreen.presenter.SplashScreenActivityPresenter;
 import co.edu.iucesmag.quierolau.SplashScreen.presenter.SplashScreenActivityPresenterInter;
 
@@ -44,16 +45,23 @@ public class SplashScreenActivity extends AppCompatActivity implements SplashScr
         Boolean flagStatusLogin = sharedPreferences.getBoolean("statusLogin", false);
         Boolean flagStartGame = sharedPreferences.getBoolean("startGame", false);
         Integer flagPositionQuestion = sharedPreferences.getInt("positionQuestion", 0);
+        Boolean flagStatusAdmin = sharedPreferences.getBoolean("statusAdmin", false);
 
         if (flagStatusLogin){
-            if (flagStartGame){
-                // Pasar a la pantalla de preguntas
-                Intent intent = new Intent(this, QuestionsActivity.class);
+            if (flagStatusAdmin){
+                // Pasar a la pantalla de reportes
+                Intent intent = new Intent(this, ReportActivity.class);
                 startActivity(intent);
             }else {
-                // Pasar a la pantalla de inicio del juego
-                Intent intent = new Intent(this, HomeActivity.class);
-                startActivity(intent);
+                if (flagStartGame){
+                    // Pasar a la pantalla de preguntas
+                    Intent intent = new Intent(this, QuestionsActivity.class);
+                    startActivity(intent);
+                }else {
+                    // Pasar a la pantalla de inicio del juego
+                    Intent intent = new Intent(this, HomeActivity.class);
+                    startActivity(intent);
+                }
             }
         }else {
             // Pasar a la pantalla de login

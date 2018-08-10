@@ -36,4 +36,9 @@ public class LoginActivityPresenter implements LoginActivityPresenterInter {
     public void signInResut(Login login) {
         loginActivityView.signInResut(login);
     }
+
+    @Override
+    public void signInResutAdmin() {
+        loginActivityView.signInResutAdmin();
+    }
 }

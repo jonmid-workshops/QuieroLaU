@@ -9,4 +9,5 @@ public interface LoginActivityPresenterInter {
     void isValidateFormResult(Boolean status);
     void signIn(String user, String pass);
     void signInResut(Login login);
+    void signInResutAdmin();
 }

@@ -28,7 +28,10 @@
         <activity
             android:name=".HomeGame.view.HomeActivity"
             android:noHistory="true" />
-        <activity android:name=".Questions.view.QuestionsActivity"
+        <activity
+            android:name=".Questions.view.QuestionsActivity"
+            android:noHistory="true" />
+        <activity android:name=".Admin.view.ReportActivity"
             android:noHistory="true"></activity>
     </application>
 

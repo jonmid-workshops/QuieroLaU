@@ -35,4 +35,9 @@ public class LoginActivityInteractor implements LoginActivityInteractorInter {
     public void signInResut(Login login) {
         loginActivityPresenterInter.signInResut(login);
     }
+
+    @Override
+    public void signInResutAdmin() {
+        loginActivityPresenterInter.signInResutAdmin();
+    }
 }

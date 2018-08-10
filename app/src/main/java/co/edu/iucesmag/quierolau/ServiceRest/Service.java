@@ -1,10 +1,14 @@
 package co.edu.iucesmag.quierolau.ServiceRest;
 
+import java.util.List;
+
+import co.edu.iucesmag.quierolau.Admin.model.Student;
 import co.edu.iucesmag.quierolau.Login.model.Login;
 import co.edu.iucesmag.quierolau.Questions.model.ResponseQuestion;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 public interface Service {
@@ -15,4 +19,7 @@ public interface Service {
     @POST(Constants.URL_POST_SAVE)
     @FormUrlEncoded
     Call<ResponseQuestion> onSaveQuestion(@Field("ident") String ident, @Field("fecini") String fecini, @Field("fecfin") String fecfin, @Field("listdata") String listdata);
+
+    @GET(Constants.URL_GET_STUDENT)
+    Call<List<Student>> getDataStudent();
 }

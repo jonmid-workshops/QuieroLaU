@@ -8,4 +8,5 @@ public interface LoginActivityInteractorInter {
     void isValidateFormData(EditText editTextUser, EditText editTextPass);
     void signIn(String user, String pass);
     void signInResut(Login login);
+    void signInResutAdmin();
 }
